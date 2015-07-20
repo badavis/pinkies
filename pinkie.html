@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+<head>
+
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+  <title>Electical and Computer Engineering Purchase Requisition Form</title>
+</head>
+
+
+
+<body>
+
+  <div class = "heading">
+    <p>Electrical and Computer Engineering</p>
+    <p>Purchase Requisition Request</p>
+    <p id = "date">DATE:</p>
+  </div>
+
+  <form method="get" action=form-handler.html target="_blank">
+
+  <div class='prelim'>
+    <span>
+      Requestor:
+        <select>
+          <option value="test1">Test1</option>
+          <option value="test2">Test2</option>
+          <option value="test3">Test3</option>
+        </select>
+
+      Extension:
+        <input type="text" name="extension">
+    </span>
+
+    <span class = "radials">
+            Action:
+            <input type="radio" name="action" value="purchase" checked>Purchase
+            <input type="radio" name="action" value="payment_request">Payment Request
+            <input type="radio" name="action" value="quote">Quote
+            <input type="radio" name="action" value="reimbursement">Reimbursement
+    </span>
+  </div>
+
+  <div class = "objects" id= 'objects_'>
+      <table>
+        <tr>
+          <td>QTY</td><td>STOCK No.</td><td>DESCRIPTION</td><td>PRICE EACH</td><td>TOTAL COST</td>
+        </tr>
+      </table>
+      <span><input type="text" name="qty0"><input type="text" name="stock0"><input type="text" name="desc0"><input type="text" name="price0"><input type="text" name="total0"><br></span>
+      <span><input type="text" name="qty1"><input type="text" name="stock1"><input type="text" name="desc1"><input type="text" name="price1"><input type="text" name="total1"><br></span>
+      <span><input type="text" name="qty2"><input type="text" name="stock2"><input type="text" name="desc2"><input type="text" name="price2"><input type="text" name="total2"><br></span>
+      <span><input type="text" name="qty3"><input type="text" name="stock3"><input type="text" name="desc3"><input type="text" name="price3"><input type="text" name="total3"><br></span>
+      <span><input type="text" name="qty4"><input type="text" name="stock4"><input type="text" name="desc4"><input type="text" name="price4"><input type="text" name="total4"><br></span>
+  </div>
+    <input type="button" id="add_line_" value="Add Item" onclick="add_line(this)">
+
+  <div class = "totals">
+    <table>
+      <tr>
+        <td>Sub-total:</td><td><input type="text" name ="sub-total" disabled></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" name="tax" value="tax" checked>Tax:</td><td><input type="text" name ="tax" disabled></td><td>Delivery Location:</td><td><input type="text" name ="location"></td>
+      </tr>
+      <tr>
+        <td>Shipping Freight:</td><td><input type="text" name ="shipping"></td><td>Date Required:</td><td><input type="text" name ="date-required"></td>
+      </tr>
+      <tr>
+        <td>Total:</td><td><input type="text" name ="total" disabled></td><td></td><td></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class = "vendors">
+    <table>
+      <tr>
+        <td>Vendor:</td><td colspan="5"><select><option value="test1">Test1</option></select><a href=''>Edit Vendors</a></td>
+      </tr>
+      <tr>
+        <td>Name:</td><td colspan="5"><input type="text" name ="name">
+      </tr>
+      <tr>
+        <td>Address:</td><td colspan="5"><textarea></textarea></td>
+      </tr>
+      <tr>
+        <td>City:</td><td><input type="text" name ="city"></td><td>State:</td><td><input type="text" name ="state"></td><td>Postal Code:</td><td><input type="text" name ="zip"></td>
+      </tr>
+      <tr>
+        <td>POC:</td><td><input type="text" name ="POC"></td><td>Phone No.:</td><td><input type="text" name ="phone"></td><td>Country:</td><td><input type="text" name ="country"></td>
+      </tr>
+      <tr>
+        <td>Internet:</td><td><input type="text" name ="internet"></td><td>Fax No.:</td><td><input type="text" name ="fax"></td><td>UCR Account:</td><td><input type="text" name ="account"></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class = "questions">
+    <span>Justification for Purchase:
+      <input type="radio" name="justification" value="instruction" checked>Instruction
+      <input type="radio" name="justification" value="research">Research
+      <input type="radio" name="justification" value="fabrication">Fabrication
+      <input type="radio" name="justification" value="other">Other:
+    </span>
+    <span><textarea></textarea></span>
+    <span>Equiptment Location:</span>
+    <span><textarea></textarea></span>
+    <span>UCR Property Number:</span>
+    <span><textarea></textarea></span>
+    <span>Class Instructed:
+      <input type='text' name="class">
+      Quote:
+      <input type='text' name='quote'>
+    </span>
+    <span>Is this computer software/hardware?
+      <input type="radio" name="computer" value="yes">Yes,
+      <input type="radio" name="computer" value="no" checked>No
+    </span>
+    <span>Is this Instructional Lab equipment?
+      <input type="radio" name="lab" value="yes">Yes,
+      <input type="radio" name="lab" value="no" checked>No
+    </span>
+    <span>Is this a chemical?
+      <input type="radio" name="chemical" value="yes">Yes,
+      <input type="radio" name="chemical" value="no" checked>No
+    </span>
+  </div>
+
+  <div class='funds'>
+    <span>Split cost in different funds?
+      <input type="radio" name="funds" value="yes">Yes,
+      <input type="radio" name="funds" value="no" checked>No
+    </span>
+    <div id="dynamic_funds">
+      <table id="funds_tbl">
+        <tr>
+          <td>Fund Name </td><td>Balance</td><td>Percentage</td><td>Amount</td><td></td>
+        </tr>
+        <tr>
+          <td><select></select></td><td><input type="text" name="balance" disabled></td><td><input type="text" name="percentage"></td><td><input type="text" name="amount"></td><td><input type="button" class="remove_fund_" value="Remove Fund" onclick="remove_fund(this)"></td>
+        </tr>
+      </table>
+      <input type="button" id="add_fund_" value="Add Fund" onclick="add_fund(this)">
+    </div>
+  </div>
+
+  <div class="final_business">
+    <span>
+      Priority:
+        <select>
+          <option value="Expedite">Expedite</option>
+          <option value="Urgent">Urgent</option>
+          <option value="Routine" selected>Routine</option>
+          <option value="Cancel">Cancel</option>
+          <option value="Hold">Hold</option>
+        </select>
+    </span>
+
+    <span>
+      Upload:
+        <input type="button" value="Choose File" id="upload">
+    </span>
+
+    <span>
+      <input type="submit" value="Submit" id="submit">
+      <input type="button" value="Reset" id="reset">
+    </span>
+
+  </div>
+
+  </form>
+
+
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
+  <script src="scripts.js"></script>
+
+</body>
+</html>

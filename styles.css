@@ -1,0 +1,125 @@
+
+.heading p{
+  display: block;
+}
+
+.prelim span{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.prelim select{
+  margin-right: 100px;
+  width: 200px;
+}
+
+.extension_form {
+  margin-left: 200px;
+  display:inline;
+}
+
+#add_line {
+  margin-bottom: 10px;
+}
+
+#add_line:hover {
+  color:blue;
+  cursor:pointer;
+}
+
+.objects table tr td:nth-child(1){
+  width:51px;
+}
+
+.objects table tr td:nth-child(2){
+  width:102px;
+}
+
+.objects table tr td:nth-child(3){
+  width:202px;
+}
+
+.objects table tr td:nth-child(4){
+  width:102px;
+}
+
+.objects table tr td:nth-child(5){
+  width:100px;
+}
+
+.objects input{
+  display: inline;
+}
+
+.objects span input:nth-child(1){
+  width:50px;
+}
+
+.objects span input:nth-child(2){
+  width:100px;
+}
+
+.objects span input:nth-child(3){
+  width:200px;
+}
+
+.objects span input:nth-child(4){
+  width:100px;
+}
+
+.objects span input:nth-child(5){
+  width:100px;
+}
+
+.totals table tr td:nth-child(1){
+  width:150px;
+  text-align: right;
+}
+
+.totals table tr td:nth-child(3){
+  width:150px;
+  text-align: right;
+}
+
+.vendors table{
+  width:700px;
+}
+
+.vendors table textarea{
+  width:500px;
+}
+
+.vendors select{
+  width: 300px;
+  margin-right: 5px;
+}
+
+.vendors table tr td:nth-child(odd){
+  text-align: right;
+}
+
+.vendors table tr td:nth-child(2) input{
+  width: 300px;
+}
+
+.vendors table tr td:nth-child(4) input{
+  width: 100px;
+}
+
+.vendors table tr td:nth-child(6) input{
+  width: 50px;
+}
+
+.questions span{
+  display: block;
+}
+
+.questions span textarea{
+  width: 500px;
+}
+
+.final_business span {
+  display: block;
+  margin-top: 10px;
+}

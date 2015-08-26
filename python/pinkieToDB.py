@@ -9,7 +9,7 @@ import pinkie
 try:
     pinkie = new Pinkie(pinkieJSON=sys.argv[1]);
     pinkie.toDatabase();
-    print "Done!";
+    print "Success!";
 except:
     print "[!]ERROR[!]";
     sys.exit(1);

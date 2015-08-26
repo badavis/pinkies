@@ -12,6 +12,6 @@ console.log("\n\n"+ form_tokens);
 console.log(json_object);
 
 
-$.post("http://gogol/ubuntu", json_object, function(data, result){
+$.post("http://gogol-ubuntu/post-test.html", json_object, function(data, result){
     alert("Data: " + data + "\nStatus: " + status);
 });

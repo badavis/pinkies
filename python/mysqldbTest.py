@@ -5,6 +5,8 @@ import MySQLdb as mdb
 import sys
 import unitTestHelper
 
+
+# Used to to basic testing of the mysql database.
 def testConnection():
     unitTestHelper.printInfo("Attempting to connect to connect to database...");
     try:
@@ -29,4 +31,3 @@ def testRemove():
 def testUpdate():
 
 def checkForTables():
-    

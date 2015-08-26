@@ -22,9 +22,6 @@ class Pinkie:
     def __init__(self, pinkieJSON):
         initDataStructures();
 
-    # Converts a pinkie to a JSON string.
-    def toJSON(self):
-
     # Inits all the data structures used by the pinkie object.
     def initDataStructures(self):
         self.objects = [][][][];
@@ -72,6 +69,14 @@ class Pinkie:
             self.funds[i][i][i] = fund["Amount"];
             i = i + 1;
 
+
     # fills the pinkies object with data in the JSON object.
     def loadDataFromJSON(self, pinkieJSON):
         json.loads(pinkieJSON);
+
+
+    # Converts a pinkie to a JSON string.
+    def toJSON(self):
+
+   # Takes the pinkies object and adds it to the database.
+   def toDatabase(self):

@@ -23,11 +23,3 @@ def testConnection():
     except mdb.Error, e:
         unitTestHelper.printFailed("Error %d: %s" % (e.args[0], e.args[1]));
         sys.exit(1);
-
-def testAdd():
-
-def testRemove():
-
-def testUpdate():
-
-def checkForTables():

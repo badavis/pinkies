@@ -1,4 +1,4 @@
-//$(document).ready(function(){
+
 //Script for getting and displaying date at top of pinkie
   var d = new Date();
   document.getElementById("date").innerHTML += " " + d.toDateString();
@@ -14,7 +14,7 @@
       button.innerHTML='Max Objects';
       button.disabled = true;
     }console.log(count);
-    document.getElementById('objects_').innerHTML+="<span><input type=\"text\" name=\"qty" + count + "\"><input type=\"text\" name=\"stock" + count + "\"><input type=\"text\" name=\"desc" + count + "\"><input type=\"text\" name=\"price" + count + "\"><input type=\"text\" name=\"total" + count + "\"><br></span>";
+    document.getElementById('objects_').innerHTML+="<span><input type=\"text\" name=\"qty" +  "\"><input type=\"text\" name=\"stock" +  "\"><input type=\"text\" name=\"desc" + "\"><input type=\"text\" name=\"price" +  "\"><input type=\"text\" name=\"total" +  "\"><br></span>";
   }
 
   function add_fund(id) {

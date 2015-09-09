@@ -78,12 +78,14 @@ def setUpTestValues():
     con.close();
     return pid;
 
+# Removes all data related to a given PID.
 def removeTestValues(pidToRemove):
     uth.printInfo("[CLEANUP] Connecting to Database...");
     con = connectToDB();
     cur = con.cursor();
     uth.printSuccess("[CLEANUP] Success!");
 
+    # Cleans up everything related to the given PID. Everything in the DB is linked to that one specific PID.
     try:
         uth.printInfo("[CLEANUP] Removing from SubmittedBy...")
         cur.execute("DELETE FROM SubmittedBy WHERE PID = %s" , (pidToRemove));

@@ -19,12 +19,12 @@
     <p id = "date">DATE:</p>
   </div>
 
-  <form method="post" action="http://107.170.228.14/pinkies/cgi-bin/formHandler.py" target="_blank">
+  <form id="pinkieForm" method="post" action="http://107.170.228.14/pinkies/cgi-bin/formHandler.py"  target="_blank">
 
   <div class='prelim'>
     <span>
       Requestor:
-        <select>
+        <select name = "requestor">
           <option value="test1">Test1</option>
           <option value="test2">Test2</option>
           <option value="test3">Test3</option>
@@ -69,7 +69,7 @@
         <td>Shipping Freight:</td><td><input type="text" name ="shipping"></td><td>Date Required:</td><td><input type="text" name ="date-required"></td>
       </tr>
       <tr>
-        <td>Total:</td><td><input type="text" name ="total" disabled></td><td></td><td></td>
+        <td>Total:</td><td><input type="text" name ="total-price" disabled></td><td></td><td></td>
       </tr>
     </table>
   </div>
@@ -77,13 +77,13 @@
   <div class = "vendors">
     <table>
       <tr>
-        <td>Vendor:</td><td colspan="5"><select><option value="test1">Test1</option></select><a href=''>Edit Vendors</a></td>
+        <td>Vendor:</td><td colspan="5"><select name = "vendor"><option value="test1">Test1</option></select><a href=''>Edit Vendors</a></td>
       </tr>
       <tr>
         <td>Name:</td><td colspan="5"><input type="text" name ="name">
       </tr>
       <tr>
-        <td>Address:</td><td colspan="5"><textarea></textarea></td>
+        <td>Address:</td><td colspan="5"><textarea name ="address"></textarea></td>
       </tr>
       <tr>
         <td>City:</td><td><input type="text" name ="city"></td><td>State:</td><td><input type="text" name ="state"></td><td>Postal Code:</td><td><input type="text" name ="zip"></td>
@@ -104,11 +104,11 @@
       <input type="radio" name="justification" value="fabrication">Fabrication
       <input type="radio" name="justification" value="other">Other:
     </span>
-    <span><textarea></textarea></span>
+    <span><textarea name = "jop-text"></textarea></span>
     <span>Equiptment Location:</span>
-    <span><textarea></textarea></span>
+    <span><textarea name = "equip-loc"></textarea></span>
     <span>UCR Property Number:</span>
-    <span><textarea></textarea></span>
+    <span><textarea name = "ucr-prop-num"></textarea></span>
     <span>Class Instructed:
       <input type='text' name="class">
       Quote:
@@ -139,7 +139,12 @@
           <td>Fund Name </td><td>Balance</td><td>Percentage</td><td>Amount</td><td></td>
         </tr>
         <tr>
-          <td><select></select></td><td><input type="text" name="balance" disabled></td><td><input type="text" name="percentage"></td><td><input type="text" name="amount"></td><td><input type="button" class="remove_fund_" value="Remove Fund" onclick="remove_fund(this)"></td>
+          <td>
+            <select name = "fname">
+              <option value="Test">Test1</option>
+            </select>
+          </td>
+          <td><input type="text" name="balance" disabled></td><td><input type="text" name="percentage"></td><td><input type="text" name="amount"></td><td><input type="button" class="remove_fund_" value="Remove Fund" onclick="remove_fund(this)"></td>
         </tr>
       </table>
       <input type="button" id="add_fund_" value="Add Fund" onclick="add_fund(this)">
@@ -149,7 +154,7 @@
   <div class="final_business">
     <span>
       Priority:
-        <select>
+        <select name = "priority">
           <option value="Expedite">Expedite</option>
           <option value="Urgent">Urgent</option>
           <option value="Routine" selected>Routine</option>
@@ -164,7 +169,7 @@
     </span>
 
     <span>
-      <input type="submit" value="Submit" id="submit">
+      <input type="submit" value="Submit" id="submitButton">
       <input type="button" value="Reset" id="reset">
     </span>
 
@@ -173,7 +178,7 @@
   </form>
 
 
-  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="scripts.js"></script>
 
 </body>

@@ -34,7 +34,7 @@
     var cell3 = row.insertCell(2);
     var cell4 = row.insertCell(3);
     var cell5 = row.insertCell(4);
-    cell1.innerHTML = "<select></select>"
+    cell1.innerHTML = "<select name = \"fname\"><option value=\"Test\">Test</option></select>"
     cell2.innerHTML = "<input type=\"text\" name=\"balance\" disabled>"
     cell3.innerHTML = "<input type=\"text\" name=\"percentage\">"
     cell4.innerHTML = "<input type=\"text\" name=\"amount\">"
@@ -46,6 +46,14 @@
     document.getElementById('funds_tbl').deleteRow(i);
   }
 
-  function submit(id){
+  $("#submitButton").click(function(button){
+      //prevent form from being submitted until validation is passed
+      button.preventDefault();
+      //fill empty text input fields so the server can process the form correctly
+      $('#pinkieForm').find('input[type=text]').each(function(e){
+        if($(this).val()=="") $(this).val("empty");
+      })
+      //submit form
+      $('#pinkieForm').submit();
 
-  }
+  });

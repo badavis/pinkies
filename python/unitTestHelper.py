@@ -37,13 +37,15 @@ def assertEquals(msg, obj1, obj2):
         printSuccess(msg);
     else:
         printFailed(msg);
+        printFailed("Was expecting: %s. Recieved: %s" % (obj1, obj2));
 
-# Asserts if twho things are not equal to each other.
+# Asserts if two things are not equal to each other.
 def assertNotEquals(msg, obj1, obj2):
     if obj1 != obj2:
         printSuccess(msg);
     else:
         printFailed(msg);
+        printFailed("Was not expecting: %s. Recieved: %s" % (obj1, obj2));
 
 def testUnitTestSoftware():
     printHeader("Console color print out.");

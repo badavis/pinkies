@@ -10,7 +10,6 @@
     // This must match the search param otherwise it won't work...
     $newAdd = FALSE;
     $listVendors = FALSE;
-    loadVender($_GET['type'], $_GET[$_GET['type']]);
   }
   else if(isset($_GET['add']))
   {
@@ -25,11 +24,11 @@
   }
 
   // Functions
-  // Load the given vendors information in to a bunch of php variables.
-  function loadVender($type, $value)
+  // Load the given vendor's information.
+  function loadVenderValue($key)
   {
-    $conn = connectTODB();
-    $sql = "SELECT 1 FROM ListOfVendors WHERE ".$_GET['type']."=".$_GET[$_GET['type']];
+    $conn = connectToDB();
+    $sql = "SELECT * FROM ListOfVendors WHERE ".$_GET['type']."=".$_GET[$_GET['type']];
     $result = $conn->query($sql);
     // Check if we got any results.
     if ($result->num_rows > 0)
@@ -37,18 +36,7 @@
       // Copy over all the values in to php variables.
       // i_ means int and s_ means string (varchar).
       $row = $result->fetch_assoc();
-      $i_VID = $row["VID"];
-      $s_VendorName = $row["VendorName"];
-      $s_Address = $row["Address"];
-      $s_City = $row["City"];
-      $s_State = $row["State"];
-      $s_Country = $row["Country"];
-      $s_Zip = $row["Zip"];
-      $s_POC = $row["POC"];
-      $s_Phone = $row["Phone"];
-      $s_Fax = $row["Fax"];
-      $s_Website = $row["Website"];
-      $s_UCRAccount = $row["UCRAccount"];
+      return$row[$key];
     }
     else
     {
@@ -57,19 +45,21 @@
     $conn->close();
   }
 
+  // Function to print all the venders.
   function printAllVendors()
   {
-    $conn = connectTODB();
+    $conn = connectToDB();
     $sql = "SELECT * FROM ListOfVendors";
     $result = $conn->query($sql);
-    $result = $conn->query($sql);
+    echo "<table>";
+    echo "<tr><th>Vendor Name</th></tr>";
 
     if ($result->num_rows > 0)
     {
-      // output data of each row
+      // Output data of each row
       while($row = $result->fetch_assoc())
       {
-          echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+          echo "<tr><td><a href=\".\\vender.php?type=VID&VID=".$row["VID"]."\">".$row["VendorName"]."</a>";
       }
     }
     else
@@ -80,7 +70,7 @@
   }
 ?>
 
-<!-- Actual page  -->
+<!-- Actual page -->
 <html>
   <head>
     <?php if($newAdd AND !$listVendors) : ?>
@@ -95,8 +85,8 @@
     <!-- Add new Vendor Mode-->
     <?php if($newAdd AND !$listVendors) : ?>
       <h1> Add New Vender </h1>
-
-      <form action="" method="post">
+      <a href="./vender.php">List vendors </a>
+      <form action="./addVendor.php" method="post">
         Vender Name:
         <input type="text" name="venderName">
         <br>
@@ -136,44 +126,45 @@
 
     <!-- Edit a vendor -->
     <?php elseif(!$newAdd AND !$listVendors) : ?>
-      <h1> Editing <?php echo $s_VendorName ; ?> </h1>
-
-      <form action="" method="post">
+      <h1> Editing <?php echo loadVenderValue("VendorName") ; ?> </h1>
+      <a href="./vender.php?add">Add a vendor </a>
+      <a href="./vender.php">List vendors </a>
+      <form action="updateVendor.php" method="post">
         Vender ID:
-        <input type="text" name="vid" value="<?php echo $i_VID ; ?>" readonly>
+        <input type="text" name="vid" value="<?php echo loadVenderValue("VID") ; ?>" readonly>
         <br>
         Vender Name:
-        <input type="text" name="venderName" value="<?php echo $s_VendorName ; ?>">
+        <input type="text" name="venderName" value="<?php echo loadVenderValue("VendorName") ; ?>">
         <br>
         Address:
-        <input type="text" name="address" value="<?php echo $s_Address ; ?>">
+        <input type="text" name="address" value="<?php echo loadVenderValue("Address") ; ?>">
         <br>
         City:
-        <input type="text" name="city" value="<?php echo $s_City ; ?>">
+        <input type="text" name="city" value="<?php echo loadVenderValue("City") ; ?>">
         <br>
         State:
-        <input type="text" name="state" value="<?php echo $s_State ; ?>">
+        <input type="text" name="state" value="<?php echo loadVenderValue("State") ; ?>">
         <br>
         Country:
-        <input type="text" name="country" value="<?php echo $s_Country ; ?>">
+        <input type="text" name="country" value="<?php echo loadVenderValue("Country") ; ?>">
         <br>
         Postal Code:
-        <input type="text" name="zip" value="<?php echo $s_Zip ; ?>">
+        <input type="text" name="zip" value="<?php echo loadVenderValue("Zip") ; ?>">
         <br>
         UCR Account ID:
-        <input type="text" name="UCRAccID" value="<?php echo $s_UCRAccount ; ?>">
+        <input type="text" name="UCRAccID" value="<?php echo loadVenderValue("UCRAccount") ; ?>">
         <br>
         Contact:
-        <input type="text" name="contact" value="<?php echo $s_POC ; ?>">
+        <input type="text" name="contact" value="<?php echo loadVenderValue("POC") ; ?>">
         <br>
         Phone:
-        <input type="text" name="phone" value="<?php echo $s_Phone ; ?>">
+        <input type="text" name="phone" value="<?php echo loadVenderValue("Phone") ; ?>">
         <br>
         Fax:
-        <input type="text" name="fax" value="<?php echo $s_Fax ; ?>">
+        <input type="text" name="fax" value="<?php echo loadVenderValue("Fax") ; ?>">
         <br>
         Website:
-        <input type="text" name="website" value="<?php echo $s_Website ; ?>">
+        <input type="text" name="website" value="<?php echo loadVenderValue("Website") ; ?>">
 
         <br><br>
         <input type="submit" value="Update">
@@ -182,6 +173,8 @@
     <!-- List a vendor -->
     <?php else : ?>
       <h1> List Of All vendors </h1>
+      <a href="./vender.php?add">Add a vendor </a>
+      <?php printAllVendors(); ?>
     <?php endif;?>
   </body>
 </html>

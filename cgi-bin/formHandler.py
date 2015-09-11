@@ -50,7 +50,7 @@ def createObjects():
 def createFunds():
 
 	fundNames = formatList("fname", form)	# gets list of all funds selected
-	amntL = formatList("amount",form)		# gets amount input for each fund
+	amntL = formatList("amount[]",form)		# gets amount input for each fund
 
 	funds = {}
 	# for loop to associate an amount with each fund

@@ -25,7 +25,7 @@
   function getFundValue($key)
   {
     $conn = connectToDB();
-    $sql = "SELECT * FROM ListofFunds WHERE ".$_GET['type']."=".$_GET[$_GET['type']];
+    $sql = "SELECT * FROM ListOfFunds WHERE ".$_GET['type']."=".$_GET[$_GET['type']];
     $result = $conn->query($sql);
     // Check if we got any results.
     if ($result->num_rows > 0)
@@ -56,7 +56,7 @@
       // Output data of each row
       while($row = $result->fetch_assoc())
       {
-          echo "<tr><td><a href=\".\\funds.php?type=FID&FID=".$row["FID"]."\">".$row["Users"]."</a></td><td>".$row["FundName"]."</td><td>".$row["Function"]."</td>";
+          echo "<tr><td><a href=\".\\funds.php?type=FID&FID=".$row["FID"]."\">".$row["Users"]."</a></td><td>".$row["FundName"]."</td><td>".$row["Activity"]."</td>";
           echo "<td>".$row["Fund"]."</td>";
           echo "<td>".$row["Function"]."</td>";
           echo "<td>".$row["CostCenter"]."</td>";
@@ -97,7 +97,19 @@
       <h1> Add a new Fund </h1>
       <a href="./funds.php"> List of all funds </a>
       <form action="addFund.php" method="POST">
-
+        Fund Name: <input type="text" name="fundName"> <br>
+        Activity: <input type="text" name="activity"> <br>
+        Fund: <input type="text" name="fund"> <br>
+        Function: <input type="text" name="function"> <br>
+        Cost Center: <input type="text" name="costCenter"> <br>
+        Project Code: <input type="text" name="projectCode"> <br>
+        Balance: <input type="text" name="balance"> <br>
+        Users: <input type="text" name="users"> <br>
+        Active: <select name="active">
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select> <br>
+        <input type="submit" value="Submit">
       </form>
     <?php elseif($mode == 1) : ?>
       <!-- Edit a user. -->
@@ -105,7 +117,20 @@
       <a href="./funds.php"> List of all funds </a>
       <a href="./funds.php?add"> Add a new Fund </a>
       <form action="updateFund.php" method="POST">
-
+        FID: <input type="text" name="fid" value="<?php echo getFundValue("FID"); ?>" readonly> <br>
+        Fund Name: <input type="text" name="fundName" value="<?php echo getFundValue("FundName"); ?>"> <br>
+        Activity: <input type="text" name="activity" value="<?php echo getFundValue("Activity"); ?>"> <br>
+        Fund: <input type="text" name="fund" value="<?php echo getFundValue("Fund"); ?>"> <br>
+        Function: <input type="text" name="function" value="<?php echo getFundValue("Function"); ?>"> <br>
+        Cost Center: <input type="text" name="costCenter" value="<?php echo getFundValue("CostCenter"); ?>"> <br>
+        Project Code: <input type="text" name="projectCode" value="<?php echo getFundValue("ProjectCode"); ?>"> <br>
+        Balance: <input type="text" name="balance" value="<?php echo getFundValue("Balance"); ?>"> <br>
+        Users: <input type="text" name="users" value="<?php echo getFundValue("Users"); ?>"> <br>
+        Active: <select name="active">
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select> <br>
+        <input type="submit" value="Submit">
       </form>
     <?php else : ?>
       <!-- List of all users page. -->

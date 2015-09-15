@@ -24,11 +24,43 @@ class Pinkie:
 
     # Inits all the data structures used by the pinkie object.
     def initDataStructures(self):
-        self.objects = {};
-        self.s_ulogin = "";
-        self.s_time = "";
-        self.s_date = "";
-        self.funds = {};
+        self.objects = {}
+        self.s_ulogin = ""
+        self.s_time = ""
+        self.s_date = ""
+        self.funds = {}
+        self.requestor =""
+    	self.extension = ""
+    	self.action = ""
+    	self.subTotal = ""
+    	self.tax = ""
+    	self.shipping = ""
+    	self.location = ""
+    	self.dateRequired = ""
+    	self.totalPrice = ""
+    	self.vendor = ""
+    	self.name = ""
+    	self.address = ""
+    	self.city = ""
+    	self.state = ""
+    	self.postalCode = ""
+    	self.POC = ""
+    	self.phoneNum = ""
+    	self.country = ""
+    	self.internet = ""
+    	self.faxNum = ""
+    	self.ucrAccount = ""
+    	self.justification = ""
+    	self.jopText = ""
+    	self.equipLoc = ""
+    	self.ucrPropNum = ""
+    	self.classInstructed = ""
+    	self.quote = ""
+    	self.compSoft = ""
+    	self.lab = ""
+    	self.chemical = ""
+    	self.fundSplit = ""
+    	self.priority = ""
         self.pid = -1;
         return;
 
@@ -83,9 +115,41 @@ class Pinkie:
         for x in xrange(0, len(pinkieJSON["funds"])):
             self.funds[x] = pinkieJSON["funds"][x]
 
-        self.s_ulogin = "test1";
-        self.s_time = time.strftime("%H:%M:%S");
-        self.s_date = time.strftime("%m-%d-%Y");
+        self.s_ulogin = pinkieJSON['requestor']
+        self.s_time = pinkieJSON['time'];
+        self.s_date = pinkieJSON['date'];
+        self.requestor = pinkieJSON['requestor'];
+    	self.extension = pinkieJSON['extension'];
+    	self.action = pinkieJSON['action'];
+    	self.subTotal = pinkieJSON['subTotal'];
+    	self.tax = pinkieJSON['tax'];
+    	self.shipping = pinkieJSON['shipping'];
+    	self.location = pinkieJSON['location'];
+    	self.dateRequired = pinkieJSON['dateRequired'];
+    	self.totalPrice = pinkieJSON['totalPrice'];
+    	self.vendor = pinkieJSON['vendor'];
+    	self.name = pinkieJSON['name'];
+    	self.address = pinkieJSON['address'];
+    	self.city = pinkieJSON['city'];
+    	self.state = pinkieJSON['state'];
+    	self.postalCode = pinkieJSON['postalCode'];
+    	self.POC = pinkieJSON['POC'];
+    	self.phoneNum = pinkieJSON['phoneNum'];
+    	self.country = pinkieJSON['country'];
+    	self.internet = pinkieJSON['internet'];
+    	self.faxNum = pinkieJSON['faxNum'];
+    	self.ucrAccount = pinkieJSON['ucrAccount'];
+    	self.justification = pinkieJSON['justification'];
+    	self.jopText = pinkieJSON['jopText'];
+    	self.equipLoc = pinkieJSON['equipLoc'];
+    	self.ucrPropNum = pinkieJSON['ucrPropNum'];
+    	self.classInstructed = pinkieJSON['classInstructed'];
+    	self.quote = pinkieJSON['quote'];
+    	self.compSoft = pinkieJSON['compSoft'];
+    	self.lab = pinkieJSON['lab'];
+    	self.chemical = pinkieJSON['chemical'];
+    	self.fundSplit = pinkieJSON['fundSplit'];
+    	self.priority = pinkieJSON['priority'];
 
         return;
 
@@ -120,6 +184,15 @@ class Pinkie:
         # Now we need to add in all the Funds with that PID to the database.
         for f in range(len(self.funds)):
             cur.execute("INSERT into Funds (PID,FundID,Amount) VALUES (%s,%s,%s)", (self.pid, self.funds[f][0], self.funds[f][1]));
+
+        # Now we need to add the extra pinkie information
+        cur.execute("INSERT into PinkieExtraInfo (PID,DateRequired,DeliveryLocation,VID, \
+                    ReferenceNumber,Computer,Instructional,Chemical,Justification, \
+                    JustificationText,EquipmentLocation,UCRPropertyNumber,ClassesInstructed,Quote,Comment) \
+                    VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", (self.pid, self.dateRequired, self.location, 1, "PLACEHOLDER",
+                                                                                self.compSoft, self.lab, self.chemical, self.justification,
+                                                                                self.jopText, self.equipLoc, self.ucrPropNum,
+                                                                                self.classInstructed, self.quote, "PLACEHOLDER")) #replace placeholder with actual values later
 
         # Commit all these changes to the database.
         con.commit();

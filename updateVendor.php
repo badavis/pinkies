@@ -4,7 +4,6 @@ include 'functions.php';
 if(!empty($_POST["vid"]))
 {
   $vid = $_POST['vid'];
-  $conn = connectTODB();
   updateValue("VendorName", $_POST["venderName"], $vid);
   updateValue("Address", $_POST["address"], $vid);
   updateValue("City", $_POST["city"], $vid);
@@ -37,7 +36,7 @@ function updateValue($valueName, $newValue, $valueID)
   }
   else
   {
-    echo "Error updating record: " . $conn->error;
+    echo "Error updating record: " . $conn->error . "<br>";
   }
 
   $conn->close();

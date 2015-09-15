@@ -14,7 +14,7 @@
       button.innerHTML='Max Objects';
       button.disabled = true;
     }console.log(count);
-    document.getElementById('objects_').innerHTML+="<span><input type=\"text\" name=\"qty" +  "\"><input type=\"text\" name=\"stock" +  "\"><input type=\"text\" name=\"desc" + "\"><input type=\"text\" name=\"price" +  "\"><input type=\"text\" name=\"total" +  "\"><br></span>";
+    document.getElementById('objects_').innerHTML+="<span><input type=\"text\" name=\"qty" +  "\"><input type=\"text\" name=\"stock" +  "\"><input type=\"text\" name=\"desc" + "\"><input type=\"text\" name=\"price" +  "\"><input type=\"text\" name=\"total\"" +  "disabled=\"true\"><br></span>";
   }
 
   function button_check(button, count){

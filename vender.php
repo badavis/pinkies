@@ -59,7 +59,7 @@
       // Output data of each row
       while($row = $result->fetch_assoc())
       {
-          echo "<tr><td><a href=\".\\vender.php?type=VID&VID=".$row["VID"]."\">".$row["VendorName"]."</a>";
+          echo "<tr><td><a href=\".\\vender.php?type=VID&VID=".$row["VID"]."\">".$row["VendorName"]."</a></td></tr>";
       }
     }
     else

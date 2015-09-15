@@ -6,6 +6,7 @@ sys.path.insert(0,'/var/www/html/pinkies/python')
 from pinkie import Pinkie
 import json
 import re
+import time
 
 #retrieves the text from an input-text field submitted by the form.
 #if key is not in the form, return "none"
@@ -75,41 +76,44 @@ if __name__ == '__main__':
 
 	objects = createObjects()
 	funds = createFunds()
-
-	requestor = getInput("requestor",form)
-	extension = getInput("extension",form)
-	action = getInput("action",form)
-	subTotal = getInput("sub-total",form)
-	tax = getInput("tax",form)
-	shipping = getInput("shipping",form)
-	location = getInput("location",form)
-	dateRequired = getInput("date-required",form)
-	totalPrice = getInput("total-price",form)
-	vendor = getInput("vendor", form)
-	name = getInput("name",form)
-	address = getInput("address",form)
-	city = getInput("city",form)
-	state = getInput("state",form)
-	postalCode = getInput("zip",form)
-	POC = getInput("POC",form)
-	phoneNum = getInput("phone",form)
-	country = getInput("country",form)
-	internet = getInput("internet",form)
-	faxNum = getInput("fax",form)
-	ucrAccount = getInput("account",form)
-	justification = getInput("justification",form)
-	jopText = getInput("jop-text",form)
-	equipLoc = getInput("equip-loc",form)
-	ucrPropNum = getInput("ucr-prop-num",form)
-	classInstructed = getInput("class",form)
-	quote = getInput("quote",form)
-	compSoft = getInput("computer",form)
-	lab = getInput("lab",form)
-	chemical = getInput("chemical",form)
-	fundSplit = getInput("funds",form)
-	priority = getInput("priority",form)
-
 	JSONPinkie = {}
+
+	JSONPinkie['requestor'] = getInput("requestor",form)
+	JSONPinkie['extension'] = getInput("extension",form)
+	JSONPinkie['action'] = getInput("action",form)
+	JSONPinkie['subTotal'] = getInput("sub-total",form)
+	JSONPinkie['tax'] = getInput("tax",form)
+	JSONPinkie['shipping'] = getInput("shipping",form)
+	JSONPinkie['location'] = getInput("location",form)
+	JSONPinkie['dateRequired'] = getInput("date-required",form)
+	JSONPinkie['totalPrice'] = getInput("total-price",form)
+	JSONPinkie['vendor'] = getInput("vendor", form)
+	JSONPinkie['name'] = getInput("name",form)
+	JSONPinkie['address'] = getInput("address",form)
+	JSONPinkie['city'] = getInput("city",form)
+	JSONPinkie['state'] = getInput("state",form)
+	JSONPinkie['postalCode'] = getInput("zip",form)
+	JSONPinkie['POC'] = getInput("POC",form)
+	JSONPinkie['phoneNum'] = getInput("phone",form)
+	JSONPinkie['country'] = getInput("country",form)
+	JSONPinkie['internet'] = getInput("internet",form)
+	JSONPinkie['faxNum'] = getInput("fax",form)
+	JSONPinkie['ucrAccount'] = getInput("account",form)
+	JSONPinkie['justification'] = getInput("justification",form)
+	JSONPinkie['jopText'] = getInput("jop-text",form)
+	JSONPinkie['equipLoc'] = getInput("equip-loc",form)
+	JSONPinkie['ucrPropNum'] = getInput("ucr-prop-num",form)
+	JSONPinkie['classInstructed'] = getInput("class",form)
+	JSONPinkie['quote'] = getInput("quote",form)
+	JSONPinkie['compSoft'] = getInput("computer",form)
+	JSONPinkie['lab'] = getInput("lab",form)
+	JSONPinkie['chemical'] = getInput("chemical",form)
+	JSONPinkie['fundSplit'] = getInput("funds",form)
+	JSONPinkie['priority'] = getInput("priority",form)
+	JSONPinkie['time'] = time.strftime("%H:%M:%S");
+	JSONPinkie['date'] = time.strftime("%m-%d-%Y");
+
+
 	JSONPinkie["objects"] = objects
 	JSONPinkie["funds"] = funds
 

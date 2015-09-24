@@ -13,8 +13,10 @@
       var button = document.getElementById('add_line');
       button.innerHTML='Max Objects';
       button.disabled = true;
-    }console.log(count);
-    document.getElementById('objects_').innerHTML+="<span><input type=\"text\" name=\"qty" +  "\"><input type=\"text\" name=\"stock" +  "\"><input type=\"text\" name=\"desc" + "\"><input type=\"text\" name=\"price" +  "\"><input type=\"text\" name=\"total\"" +  "disabled=\"true\"><br></span>";
+    }
+    var newObject = document.createElement('span');
+    newObject.innerHTML = "<input type=\"text\" name=\"qty" +  "\"><input type=\"text\" name=\"stock" +  "\"><input type=\"text\" name=\"desc" + "\"><input type=\"text\" name=\"price" +  "\"><input type=\"text\" name=\"total\"" +  "disabled=\"true\"><br>";
+    document.getElementById('objects_').appendChild(newObject);
   }
 
   function button_check(button, count){
@@ -148,4 +150,62 @@
       //submit form
       $('#pinkieForm').submit();
 
+  });
+
+  function updateTotal () {
+    var total = parseFloat($('input[name="sub-total"]').val()) + parseFloat($('input[name="tax"]').val());
+    $('input[name="total-price"]').val(total);
+  }
+
+  function updateTax () {
+    var totalTax = parseFloat($('input[name="sub-total"]').val()) * 0.08;
+    $('input[name="tax"]').val(totalTax);
+    updateTotal();
+  }
+
+  function updateSubTotal () {
+    var totalArray = $('input[name="total"]').get();
+    var subTot = 0;
+    for ( var i = 0; i < totalArray.length; i++){
+      if ( totalArray[i].value != ""){
+        subTot = subTot + parseFloat(totalArray[i].value);
+      }
+    }
+
+    $('input[name="sub-total"]').val(subTot);
+    updateTax();
+  }
+
+  $('.objects').on('keyup', 'input[name="price"]',function(){ //delegating to closest static element, which is the 'objects' div
+    var priceArray = $('input[name="price"]').get();
+    var totalArray = $('input[name="total"]').get();
+    var qtyArray = $('input[name="qty"]').get();
+    for ( var i = 0; i < priceArray.length; i++){
+      if (qtyArray[i].value <= 1){
+        totalArray[i].value = priceArray[i].value;
+      }
+      else{
+        totalArray[i].value = priceArray[i].value * qtyArray[i].value;
+      }
+
+      if ( priceArray[i].value != "" && qtyArray[i].value < 1 ){
+        qtyArray[i].value = 1;
+      }
+      else if ( priceArray[i].value == "") {
+        qtyArray[i].value = "";
+      }
+    }
+    updateSubTotal();
+  });
+
+  $('input[name="qty"]').keyup(function(){
+    var priceArray = $('input[name="price"]').get();
+    var totalArray = $('input[name="total"]').get();
+    var qtyArray = $('input[name="qty"]').get();
+    for ( var i = 0; i < priceArray.length; i++){
+      if (qtyArray[i].value >= 1){
+        totalArray[i].value = priceArray[i].value * qtyArray[i].value;
+      }
+    }
+    updateSubTotal();
   });

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+<head>
+
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+  <title>Electical and Computer Engineering Purchase Requisition Form</title>
+</head>
+
+
+
+<body>
+
+  <div class = "heading">
+    <p>Electrical and Computer Engineering</p>
+    <p>Purchase Requisition Request</p>
+    <p id = "date">DATE:</p>
+  </div>
+
+  <form id="pinkieForm" method="post" action=""  target="_blank">
+
+    <div class='prelim'>
+      <table>
+        <tr>
+          <td>
+          Requestor:<!--CHANGE TO SQL-->
+            <select name = "requestor">
+              <option value="test1">Test1</option>
+              <option value="test2">Test2</option>
+              <option value="test3">Test3</option>
+            </select>
+          </td>
+          <td>
+            Extension:<!--CHANGE TO SQL-->
+            <input type="text" name="extension">
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            Reference No.:
+            <input type="text" name="refNum"></input>
+          </td>
+          <td>
+            Control No.:
+            <input type="text" name="controlNum"></input>
+          </td>
+        </tr>
+      </table>
+
+      <span class = "radials">
+              Action:<!--CHANGE TO SQL-->
+              <input type="radio" name="action" value="purchase" checked>Purchase
+              <input type="radio" name="action" value="payment_request">Payment Request
+              <input type="radio" name="action" value="quote">Quote
+              <input type="radio" name="action" value="reimbursement">Reimbursement
+      </span>
+    </div>
+
+  </form>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="scripts.js"></script>
+
+</body>
+</html>

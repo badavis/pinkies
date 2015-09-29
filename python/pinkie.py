@@ -38,18 +38,7 @@ class Pinkie:
     	self.location = ""
     	self.dateRequired = ""
     	self.totalPrice = ""
-    	self.vendor = ""
-    	self.name = ""
-    	self.address = ""
-    	self.city = ""
-    	self.state = ""
-    	self.postalCode = ""
-    	self.POC = ""
-    	self.phoneNum = ""
-    	self.country = ""
-    	self.internet = ""
-    	self.faxNum = ""
-    	self.ucrAccount = ""
+
     	self.justification = ""
     	self.jopText = ""
     	self.equipLoc = ""
@@ -62,6 +51,21 @@ class Pinkie:
     	self.fundSplit = ""
     	self.priority = ""
         self.pid = -1;
+
+        # Vendor Info
+    	self.vendor = ""
+    	self.name = ""
+    	self.address = ""
+    	self.city = ""
+    	self.state = ""
+    	self.postalCode = ""
+    	self.POC = ""
+    	self.phoneNum = ""
+    	self.country = ""
+    	self.internet = ""
+    	self.faxNum = ""
+    	self.ucrAccount = ""
+
         return;
 
     # Loads all values for fields based on the pinkies.
@@ -78,6 +82,9 @@ class Pinkie:
         self.s_ulogin = resp["UserID"];
         self.s_date = resp["Date"];
         self.s_time = resp["Time"];
+        self.priority = resp["Priority"];
+        self.action = resp["Action"];
+        self.totalPrice = resp["Total"];
 
         # Gather the object information
         cur.execute("SELECT * FROM Objects WHERE PID=%s", (pinkieId))
@@ -97,10 +104,45 @@ class Pinkie:
 
         i = 0;
         for fund in funds:
-            self.funds[i][0] = fund["FID"];
-            self.funds[i][1] = fund["FundID"];
-            self.funds[i][2] = fund["Amount"];
+            self.funds[i][0] = fund["FundID"];
+            self.funds[i][1] = fund["Amount"];
+            self.funds[i][2] = fund["FID"];
             i = i + 1;
+
+
+        # Gather all the extra information
+        cur.execute("SELECT * FROM PinkieExtraInfo WHERE PID=%s", (pinkieId));
+        resp = cur.fetchone();
+
+        self.dateRequired = resp["DateRequired"];
+        self.computer = resp["Computer"];
+        self.chemical = resp["Chemical"];
+        self.justification = resp["Justification"];
+        self.jopText = resp["JustificationText"];
+        self.classInstructed = resp["ClassesInstructed"];
+        self.equipLoc = resp["EquipmentLocation"];
+        self.ucrPropNum = resp["UCRPropertyNumber"];
+        self.referenceNumber = resp["ReferenceNumber"];
+        self.location = resp["DeliveryLocation"];
+        self.quote = resp["Quote"];
+
+
+        self.vendor = resp["VID"];
+        # Gather all the vendor information.
+        cur.execute("SELECT * FROM ListOfVendors WHERE VID=%s", (self.vendor));
+        resp = cur.fetchone();
+
+    	self.name = resp["VendorName"];
+    	self.address = resp["Address"];
+    	self.city = resp["City"];
+    	self.state = resp["State"];
+    	self.postalCode = resp["ZIP"];
+    	self.POC = resp["POC"];
+    	self.phoneNum = resp["Phone"];
+    	self.country = resp["Country"];
+    	self.internet = resp["Website"];
+    	self.faxNum = resp["Fax"];
+    	self.ucrAccount = resp["ucrAccount"];
 
         con.close();
         return;

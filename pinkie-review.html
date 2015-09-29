@@ -59,6 +59,157 @@
       </span>
     </div>
 
+    <div class = "objects" id= 'objects_'>
+        <table>
+          <tr>
+            <td>QTY</td><td>STOCK No.</td><td>DESCRIPTION</td><td>BC</td><td>Account No.</td><td>PRICE EACH</td><td>TOTAL COST</td>
+          </tr>
+        </table>
+        <span><input type="text" name="qty"><input type="text" name="stock"><input type="text" name="desc"><input type="text" name="BC"><input type="text" name="accountNo"><input type="text" name="price"><input type="text" name="total" disabled="true"><br></span>
+        <span><input type="text" name="qty"><input type="text" name="stock"><input type="text" name="desc"><input type="text" name="BC"><input type="text" name="accountNo"><input type="text" name="price"><input type="text" name="total" disabled="true"><br></span>
+        <span><input type="text" name="qty"><input type="text" name="stock"><input type="text" name="desc"><input type="text" name="BC"><input type="text" name="accountNo"><input type="text" name="price"><input type="text" name="total" disabled="true"><br></span>
+        <span><input type="text" name="qty"><input type="text" name="stock"><input type="text" name="desc"><input type="text" name="BC"><input type="text" name="accountNo"><input type="text" name="price"><input type="text" name="total" disabled="true"><br></span>
+        <span><input type="text" name="qty"><input type="text" name="stock"><input type="text" name="desc"><input type="text" name="BC"><input type="text" name="accountNo"><input type="text" name="price"><input type="text" name="total" disabled="true"><br></span>
+    </div>
+    <br>
+    <div class = "totals">
+      <table>
+        <tr>
+          <td>Sub-total:</td><td><input type="text" name ="sub-total" disabled></td><td></td><td></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="tax" value="tax" checked>Tax:</td><td><input type="text" name ="tax" disabled></td><td>Delivery Location:</td><td><input type="text" name ="location"></td>
+        </tr>
+        <tr>
+          <td>Shipping Freight:</td><td><input type="text" name ="shipping"></td><td>Date Required:</td><td><input type="text" name ="date-required"></td>
+        </tr>
+        <tr>
+          <td>Total:</td><td><input type="text" name ="total-price" disabled></td><td></td><td></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class = "vendors">
+      <table>
+        <tr>
+          <td>Vendor:</td><td colspan="5"><select name = "vendor"><option value="test1">Test1</option></select><a href=''>Edit Vendors</a></td>
+        </tr>
+        <tr>
+          <td>Name:</td><td colspan="5"><input type="text" name ="name">
+        </tr>
+        <tr>
+          <td>Address:</td><td colspan="5"><textarea name ="address"></textarea></td>
+        </tr>
+        <tr>
+          <td>City:</td><td><input type="text" name ="city"></td><td>State:</td><td><input type="text" name ="state"></td><td>Postal Code:</td><td><input type="text" name ="zip"></td>
+        </tr>
+        <tr>
+          <td>POC:</td><td><input type="text" name ="POC"></td><td>Phone No.:</td><td><input type="text" name ="phone"></td><td>Country:</td><td><input type="text" name ="country"></td>
+        </tr>
+        <tr>
+          <td>Internet:</td><td><input type="text" name ="internet"></td><td>Fax No.:</td><td><input type="text" name ="fax"></td><td>UCR Account:</td><td><input type="text" name ="account"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class = "questions">
+      <span>Justification for Purchase:
+        <input type="radio" name="justification" value="instruction" checked>Instruction
+        <input type="radio" name="justification" value="research">Research
+        <input type="radio" name="justification" value="fabrication">Fabrication
+        <input type="radio" name="justification" value="other">Other:
+      </span>
+      <span><textarea name = "jop-text"></textarea></span>
+      <span>Equiptment Location:</span>
+      <span><textarea name = "equip-loc"></textarea></span>
+      <span>UCR Property Number:</span>
+      <span><textarea name = "ucr-prop-num"></textarea></span>
+      <span>Class Instructed:
+        <input type='text' name="class">
+        Quote:
+        <input type='text' name='quote'>
+      </span>
+      <span>Is this computer software/hardware?
+        <input type="radio" name="computer" value="yes">Yes,
+        <input type="radio" name="computer" value="no" checked>No
+      </span>
+      <span>Is this Instructional Lab equipment?
+        <input type="radio" name="lab" value="yes">Yes,
+        <input type="radio" name="lab" value="no" checked>No
+      </span>
+      <span>Is this a chemical?
+        <input type="radio" name="chemical" value="yes">Yes,
+        <input type="radio" name="chemical" value="no" checked>No
+      </span>
+    </div>
+
+    <div class='funds'>
+      <span>Split cost in different funds?
+        <input type="radio" name="funds" value="yes">Yes,
+        <input type="radio" name="funds" value="no" checked>No
+      </span>
+      <div id="dynamic_funds">
+        <table id="funds_tbl">
+          <tr>
+            <td>Fund Name </td><td>Balance</td><td>Percentage</td><td>Amount</td><td></td>
+          </tr>
+          <tr>
+            <td>
+              <select name = "fname">
+                <option value="Test1">Test1</option>
+              </select>
+            </td>
+            <td><input type="text" name="balance" disabled></td><td><input type="text" name="percentage"></td><td><input type="text" name="amount[]"></td><td></td>
+          </tr>
+        </table>
+        <input type="button" id="add_fund_" value="Add Fund" onclick="add_fund(this)">
+      </div>
+    </div>
+
+    <div class="final_business">
+      <span>
+        Priority:
+          <select name = "priority">
+            <option value="Expedite">Expedite</option>
+            <option value="Urgent">Urgent</option>
+            <option value="Routine" selected>Routine</option>
+            <option value="Cancel">Cancel</option>
+            <option value="Hold">Hold</option>
+          </select>
+      </span>
+
+      <span>
+        Status:
+          <select name = "status">
+            <option value="AFI">AFI</option>
+            <option value="Archived">Archived</option>
+            <option value="Cancelled">Cancelled</option>
+            <option value="Partial-Receipt">Partial Receipt</option>
+            <option value="Received" selected>Received</option>
+            <option value="Dispatched">Dispatched</option>
+            <option value="Processed">Processed</option>
+            <option value="Other">Other</option>
+          </select>
+          <input type="text" name="status-other" disabled="yes">
+          <span>Comments:</span>
+          <span><textarea name = "comments"></textarea></span>
+      </span>
+
+      <span>
+        Approved?
+        <input type="radio" name="approved" value="yes">Yes
+        <input type="radio" name="approved" value="no" checked>No
+      </span>
+      
+      <span>
+        <input type="submit" value="Submit" id="submitButton">
+        <input type="button" value="Reset" id="reset">
+      </span>
+
+
+
+    </div>
+
   </form>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
